@@ -11,17 +11,21 @@ class Activity {
 class Repository { 
   constructor() {
     this.activities = [];
+    this.idCounter = 1;
   }
 
   getAllActivities(){
-    return this.activities;
+    return [...this.activities];
   }
 
   createActivity(title, description, imgUrl){
-    const id = Date.now ();
-    const newActivity = new Activity(id, title, description, imgUrl);
-    this.activities.push(newActivity);
-    return newActivity;
+    const activity = new Activity(
+      this.idCounter++,
+      title,
+      description,
+      imgUrl
+    )
+    this.activities.push(activity);
   }
 
   deleteActivity(id) {
