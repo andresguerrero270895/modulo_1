@@ -65,7 +65,7 @@ function createActivityCard(activity) {
 }
 
 function renderActivities() {
-  const container = document.getElementById("activities-container");
+  const container = document.getElementById("activities-grid");
   container.innerHTML = "";
 
   const activities = repository.getAllActivities();
@@ -75,3 +75,22 @@ function renderActivities() {
     container.appendChild(card);
   });
 }
+
+function handleFormSubmit(event) {
+  event.preventDefault();
+
+  const title = document.getElementById("title").value;
+  const description = document.getElementById("description").value;
+  const imgUrl = document.getElementById("imgUrl").value;
+  
+  
+  if(!title ||!description || !imgUrl ) {
+    alert("All fields are required");
+    return;
+  }
+  repository.createActivity(title, description, imgUrl);
+  renderActivities();
+
+  event.target.reset();
+}
+
