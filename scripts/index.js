@@ -63,3 +63,15 @@ function createActivityCard(activity) {
   card.append(title, description, image, deleteButton)
   return card;
 }
+
+function renderActivities() {
+  const container = document.getElementById("activities-container");
+  container.innerHTML = "";
+
+  const activities = repository.getAllActivities();
+
+  activities.forEach(activity => {
+    const card = createActivityCard(activity);
+    container.appendChild(card);
+  });
+}
